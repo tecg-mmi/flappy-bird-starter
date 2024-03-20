@@ -29,6 +29,7 @@ export const settings = {
             dw: 336,
             dh: 112
         },
+        speed: 3
     },
     tubesPair: {
         top: {
