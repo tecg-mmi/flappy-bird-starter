@@ -3,7 +3,6 @@ import {settings} from "../settings";
 import {Stoppable} from "./Stoppable";
 import {IGameStatus} from "../Types/IGameStatus";
 import {IPosition} from "../../framework/types/iPosition";
-import {Collision} from "../../framework/helpers/Collision";
 import {IObject} from "../../framework/types/IObject";
 import {Tube} from "./Tube";
 
@@ -55,13 +54,13 @@ export class Birdie extends Stoppable implements IAnimatable, IObject {
             settings.birdie.frames[this.step].sy,
             this.width,
             this.height,
-            -this.width/2,
-            -this.height/2,
+            -this.width / 2,
+            -this.height / 2,
             this.width,
             this.height,
         )
         this.ctx.fillStyle = 'red';
-        this.ctx.fillRect(-this.width/2, -this.height/2, this.width, this.height);
+        this.ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
         this.ctx.restore()
     }
 
@@ -77,21 +76,30 @@ export class Birdie extends Stoppable implements IAnimatable, IObject {
         }
     }
 
+    // checkCollisionWithTubes() {
+    //     const collisionWidth = this.width * 0.2; // Réduction de la largeur pour la collision
+    //     const collisionHeight = this.height * 0.2; // Réduction de la hauteur pour la collision
+    //
+    //     this.tubes.forEach(tube => {
+    //         // Création d'un objet temporaire pour représenter la zone de collision ajustée
+    //         const tempBird = {
+    //             position: { x: this.position.x + (this.width - collisionWidth) / 2, y: this.position.y + (this.height - collisionHeight) / 2 },
+    //             width: collisionWidth,
+    //             height: collisionHeight
+    //         };
+    //
+    //         if (Collision.checkCollisionInterface(tempBird, tube.top) || Collision.checkCollisionInterface(tempBird, tube.bottom)) {
+    //             cancelAnimationFrame(this.status.requestAnimationFrameID);
+    //         }
+    //     });
+    // }
     checkCollisionWithTubes() {
-        const collisionWidth = this.width * 0.2; // Réduction de la largeur pour la collision
-        const collisionHeight = this.height * 0.2; // Réduction de la hauteur pour la collision
-
         this.tubes.forEach(tube => {
-            // Création d'un objet temporaire pour représenter la zone de collision ajustée
-            const tempBird = {
-                position: { x: this.position.x + (this.width - collisionWidth) / 2, y: this.position.y + (this.height - collisionHeight) / 2 },
-                width: collisionWidth,
-                height: collisionHeight
-            };
-
-            if (Collision.checkCollisionInterface(tempBird, tube.top) || Collision.checkCollisionInterface(tempBird, tube.bottom)) {
-                cancelAnimationFrame(this.status.requestAnimationFrameID);
+            if (this.position.x + this.width / 2 > tube.bottom.position.x && this.position.x - this.width / 2 < tube.bottom.position.x + tube.bottom.width) {
+                if ((this.position.y - this.height / 2) < tube.top.position.y + tube.top.height || (this.position.y + this.height / 2) > tube.bottom.position.y) {
+                    cancelAnimationFrame(this.status.requestAnimationFrameID);
+                }
             }
-        });
+        })
     }
 }
