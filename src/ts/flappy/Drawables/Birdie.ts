@@ -78,10 +78,20 @@ export class Birdie extends Stoppable implements IAnimatable, IObject {
     }
 
     checkCollisionWithTubes() {
+        const collisionWidth = this.width * 0.2; // Réduction de la largeur pour la collision
+        const collisionHeight = this.height * 0.2; // Réduction de la hauteur pour la collision
+
         this.tubes.forEach(tube => {
-            if (Collision.checkCollisionInterface(this, tube.top) || Collision.checkCollisionInterface(this, tube.bottom)) {
+            // Création d'un objet temporaire pour représenter la zone de collision ajustée
+            const tempBird = {
+                position: { x: this.position.x + (this.width - collisionWidth) / 2, y: this.position.y + (this.height - collisionHeight) / 2 },
+                width: collisionWidth,
+                height: collisionHeight
+            };
+
+            if (Collision.checkCollisionInterface(tempBird, tube.top) || Collision.checkCollisionInterface(tempBird, tube.bottom)) {
                 cancelAnimationFrame(this.status.requestAnimationFrameID);
             }
-        })
+        });
     }
 }
