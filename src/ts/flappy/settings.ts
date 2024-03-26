@@ -1,5 +1,10 @@
 export const settings = {
     birdie: {
+        maxFallSpeed: 7,
+        gravity: 0.9,
+        width: 34,
+        height: 24,
+        maxFrameInterval: 5,
         frames: [
             {sx: 6, sy: 982},
             {sx: 62, sy: 982},
@@ -30,26 +35,28 @@ export const settings = {
             dh: 112
         },
     },
-    tubesPair: {
+    tubes: {
+        gap: 80,
+        speed: 3,
+        sw: 52,
+        sh: 320,
+        dx: 0,
+        dy: 0,
+        dw: 52,
+        dh: 320,
+        maxTubesPairs: 3,
+        maxFrameInterval: {min: 80, max: 100},
+        randomY: {min: -150, max: -30},
+        horizontalGap: {min: 100, max: 200},
         top: {
-            sx: 553,
-            sy: 0,
-            sw: 53,
-            sh: 400,
-            dx: 0,
-            dy: 0,
-            dw: 53,
-            dh: 400
+            sx: 113,
+            sy: 647,
         },
         bottom: {
-            sx: 502,
-            sy: 0,
-            sw: 53,
-            sh: 400,
-            dx: 0,
-            dy: 0,
-            dw: 53,
-            dh: 400
-        }
+            sx: 168,
+            sy: 647,
+        },
+
+
     },
 }

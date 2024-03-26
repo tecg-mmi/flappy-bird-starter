@@ -1,6 +1,6 @@
-import {settings} from "./settings";
 import {Drawable} from "./Drawable";
-import {IAnimatable} from "./Types/IAnimatable";
+import {IAnimatable} from "../Types/IAnimatable";
+import {settings} from "../settings";
 
 export class Background extends Drawable implements IAnimatable {
 
