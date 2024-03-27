@@ -4,7 +4,7 @@ import {Random} from "../../framework/helpers/Random";
 import {Drawable} from "./Drawable";
 import {IObject} from "../../framework/types/IObject";
 
-export class Tube extends Drawable implements IAnimatable {
+export class TubePair extends Drawable implements IAnimatable {
     public top: IObject;
     public bottom: IObject;
 

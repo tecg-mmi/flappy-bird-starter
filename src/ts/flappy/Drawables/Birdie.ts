@@ -4,7 +4,7 @@ import {Stoppable} from "./Stoppable";
 import {IGameStatus} from "../Types/IGameStatus";
 import {IPosition} from "../../framework/types/iPosition";
 import {IObject} from "../../framework/types/IObject";
-import {Tube} from "./Tube";
+import {TubePair} from "./TubePair";
 
 export class Birdie extends Stoppable implements IAnimatable, IObject {
 
@@ -17,10 +17,10 @@ export class Birdie extends Stoppable implements IAnimatable, IObject {
     maxFrameInterval = settings.birdie.maxFrameInterval;
     public width: number = settings.birdie.width;
     public height: number = settings.birdie.height;
-    private tubes: Tube[];
+    private tubes: TubePair[];
 
 
-    constructor(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, sprite: HTMLImageElement, status: IGameStatus, tubes: Tube[]) {
+    constructor(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, sprite: HTMLImageElement, status: IGameStatus, tubes: TubePair[]) {
         super(ctx, canvas, sprite, status);
         this.position = {x: this.canvas.width / 3, y: this.canvas.height / 2};
         this.maxAnimationStep = settings.birdie.frames.length - 1;

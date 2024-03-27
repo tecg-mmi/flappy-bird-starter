@@ -1,7 +1,7 @@
 import {IAnimatable} from "./Types/IAnimatable";
 import {Background} from "./Drawables/Background";
 import {Ground} from "./Drawables/Ground";
-import {TubesPair} from "./Drawables/TubesPair";
+import {TubesPairs} from "./Drawables/TubesPairs";
 import {Birdie} from "./Drawables/Birdie";
 import {IGameStatus} from "./Types/IGameStatus";
 
@@ -11,8 +11,8 @@ const ctx = canvas.getContext('2d');
 const sprite = new Image();
 sprite.src = 'src/resources/sprite.png';
 const gameStatus: IGameStatus = {isStarted: false, requestAnimationFrameID: 0};
-const tubesPairs = new TubesPair(ctx, canvas, sprite, gameStatus);
-const birdie = new Birdie(ctx, canvas, sprite, gameStatus, tubesPairs.tubes);
+const tubesPairs = new TubesPairs(ctx, canvas, sprite, gameStatus);
+const birdie = new Birdie(ctx, canvas, sprite, gameStatus, tubesPairs.tubePairs);
 
 const animatables: IAnimatable[] = [
     new Background(ctx, canvas, sprite),
