@@ -14,9 +14,15 @@ const flappyBird = {
     },
     addEventListeners() {
         this.sprite.addEventListener("load", () => {
-            this.background.draw();
-            this.ground.draw();
+            this.animate();
         })
+    },
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.background.draw();
+        this.ground.update();
+        this.ground.draw();
+        requestAnimationFrame(this.animate.bind(this));
     },
 };
 
