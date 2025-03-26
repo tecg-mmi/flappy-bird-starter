@@ -1,4 +1,6 @@
 export const settings = {
+    canvasID: "game",
+    spriteSRC: "src/img/sprite.png",
     birdie: {
         frames: [
             {sx: 6, sy: 982},
@@ -52,4 +54,6 @@ export const settings = {
             dh: 400
         }
     },
+
+
 }
