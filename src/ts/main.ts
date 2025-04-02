@@ -34,5 +34,6 @@ class FlappyBird {
         this.ground.draw();
         requestAnimationFrame(this.animate.bind(this));
     }
-
 }
+
+new FlappyBird();
