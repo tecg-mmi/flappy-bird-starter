@@ -1,9 +1,9 @@
-import {Background} from "./Background";
 import {settings} from "./settings";
-import {Ground} from "./Ground";
-import {Bird} from "./Bird";
 import {Animation} from "./framework25/Animation";
 import {iAnimatable} from "./framework25/types/iAnimatable";
+import {Background} from "./iAnimatables/Background";
+import {Ground} from "./iAnimatables/Ground";
+import {Bird} from "./iAnimatables/Bird";
 
 class FlappyBird {
     private readonly canvas: HTMLCanvasElement;
