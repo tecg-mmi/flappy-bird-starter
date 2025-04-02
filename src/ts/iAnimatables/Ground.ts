@@ -1,6 +1,6 @@
-import {settings} from "./settings";
-import {FrameDrawer} from "./framework25/FrameDrawer";
-import {iAnimatable} from "./framework25/types/iAnimatable";
+import {FrameDrawer} from "../framework25/FrameDrawer";
+import {iAnimatable} from "../framework25/types/iAnimatable";
+import {settings} from "../settings";
 
 export class Ground extends FrameDrawer implements iAnimatable {
     private canvas: HTMLCanvasElement;

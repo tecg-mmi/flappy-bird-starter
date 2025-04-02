@@ -1,6 +1,6 @@
-import {settings} from "./settings";
-import {FrameDrawer} from "./framework25/FrameDrawer";
-import {iAnimatable} from "./framework25/types/iAnimatable";
+import {FrameDrawer} from "../framework25/FrameDrawer";
+import {iAnimatable} from "../framework25/types/iAnimatable";
+import {settings} from "../settings";
 
 export class Background extends FrameDrawer implements iAnimatable {
     constructor(sprite: CanvasImageSource, ctx: CanvasRenderingContext2D,) {

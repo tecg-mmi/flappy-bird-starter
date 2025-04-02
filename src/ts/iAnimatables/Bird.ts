@@ -1,6 +1,6 @@
-import {FrameDrawer} from "./framework25/FrameDrawer";
-import {settings} from "./settings";
-import {iAnimatable} from "./framework25/types/iAnimatable";
+import {FrameDrawer} from "../framework25/FrameDrawer";
+import {iAnimatable} from "../framework25/types/iAnimatable";
+import {settings} from "../settings";
 
 export class Bird extends FrameDrawer implements iAnimatable {
     private canvas: HTMLCanvasElement;
