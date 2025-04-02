@@ -1,7 +1,8 @@
 import {settings} from "./settings";
 import {DrawFrame} from "./framework25/DrawFrame";
+import {iAnimatable} from "./framework25/types/iAnimatable";
 
-export class Ground extends DrawFrame {
+export class Ground extends DrawFrame implements iAnimatable {
     private canvas: HTMLCanvasElement;
     private maxOffset: number;
 
@@ -13,6 +14,7 @@ export class Ground extends DrawFrame {
         this.frame.dx = 0;
         this.maxOffset = -(settings.ground.frame.sw - this.canvas.width);
     }
+
     update() {
         this.frame.dx--;
         if (this.frame.dx <= this.maxOffset) {
