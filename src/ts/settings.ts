@@ -2,6 +2,7 @@ export const settings = {
     canvasID: "game",
     spriteURL: "src/img/sprite.png",
     birdie: {
+        gravity: 2,
         frames: [
             {
                 sx: 6,
@@ -34,7 +35,7 @@ export const settings = {
                 dh: 35
             }
         ],
-        maxFallSpeed: 3, maxFrame: 10
+        maxFallSpeed: 5, maxFrame: 10
 
     },
     background: {
@@ -85,5 +86,5 @@ export const settings = {
             dh: 325
         }
     },
-    gravity: 0.2
+
 }
