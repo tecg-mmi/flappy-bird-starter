@@ -36,6 +36,7 @@ export class Birdie extends FrameDrawer implements iAnimatable {
     }
 
     private updateFrame() {
+
         this.frameCounter++;
         if (this.frameCounter >= settings.birdie.maxFrameRate) {
             this.frameCounter = 0;
