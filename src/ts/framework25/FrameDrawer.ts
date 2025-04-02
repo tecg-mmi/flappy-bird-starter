@@ -11,7 +11,7 @@ export class FrameDrawer {
         this.frame = frame;
     }
 
-    draw(ctx: CanvasRenderingContext2D) {
+    draw() {
         this.ctx.drawImage(
             this.sprite,
             this.frame.sx,

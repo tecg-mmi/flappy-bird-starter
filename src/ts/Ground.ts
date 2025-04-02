@@ -11,10 +11,7 @@ export class Ground extends FrameDrawer {
         this.frame.dy = this.canvas.height - settings.ground.frame.sh;
     }
 
-    update(delta: number) {
+    update() {
         this.frame.sx++;
-        if (true) {
-
-        }
     }
 }
