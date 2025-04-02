@@ -34,7 +34,8 @@ export const settings = {
                 dh: 35
             }
         ],
-        maxFallSpeed: 3,
+        maxFallSpeed: 3, dxRatio: 0.25
+
     },
     background: {
         frame: {

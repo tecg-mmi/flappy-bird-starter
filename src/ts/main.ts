@@ -1,13 +1,19 @@
 import {Background} from "./Background";
 import {settings} from "./settings";
 import {Ground} from "./Ground";
+import {Bird} from "./Bird";
+import {Animation} from "./framework25/Animation";
+import {iAnimatable} from "./framework25/types/iAnimatable";
 
 class FlappyBird {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
-    private sprite: CanvasImageSource;
-    private background: Background;
-    private ground: Ground;
+    private readonly canvas: HTMLCanvasElement;
+    private readonly ctx: CanvasRenderingContext2D;
+    private readonly sprite: CanvasImageSource;
+    private readonly background: Background;
+    private readonly ground: Ground;
+    private readonly bird: Bird;
+    private readonly animation: Animation;
+    private iAnimatables: iAnimatable[];
 
 
     constructor() {
@@ -18,22 +24,19 @@ class FlappyBird {
         this.addEventListeners();
         this.background = new Background(this.sprite, this.ctx);
         this.ground = new Ground(this.sprite, this.ctx, this.canvas);
+        this.bird = new Bird(this.sprite, this.ctx, this.canvas);
+        this.iAnimatables = [this.background, this.ground, this.bird];
+
+        this.animation = new Animation(this.ctx, this.canvas, this.iAnimatables);
     }
 
     addEventListeners() {
         // @ts-ignore
         this.sprite.addEventListener("load", () => {
-            this.animate();
+            this.animation.start();
         })
     }
 
-    animate() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.background.draw();
-        this.ground.update();
-        this.ground.draw();
-        requestAnimationFrame(this.animate.bind(this));
-    }
 }
 
 new FlappyBird();
