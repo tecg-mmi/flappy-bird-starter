@@ -1,12 +1,41 @@
 export const settings = {
     canvasID: "game",
-    spriteSRC: "src/img/sprite.png",
+    spriteURL: "src/img/sprite.png",
     birdie: {
         frames: [
-            {sx: 6, sy: 982},
-            {sx: 62, sy: 982},
-            {sx: 118, sy: 982}
-        ]
+            {
+                sx: 6,
+                sy: 982,
+                sw: 35,
+                sh: 35,
+                dx: 72,
+                dy: 200,
+                dw: 35,
+                dh: 35
+            },
+            {
+                sx: 62,
+                sy: 982,
+                sw: 35,
+                sh: 35,
+                dx: 72,
+                dy: 200,
+                dw: 35,
+                dh: 35
+            },
+            {
+                sx: 118,
+                sy: 982,
+                sw: 35,
+                sh: 35,
+                dx: 72,
+                dy: 200,
+                dw: 35,
+                dh: 35
+            }
+        ],
+        maxFallSpeed: 3, maxFrame: 10
+
     },
     background: {
         frame: {
@@ -33,27 +62,28 @@ export const settings = {
         },
     },
     tubesPair: {
+        tubesMinGap: -100,
+        tubesMaxGap: 100,
         top: {
-            sx: 553,
-            sy: 0,
-            sw: 53,
-            sh: 400,
-            dx: 0,
-            dy: 0,
-            dw: 53,
-            dh: 400
+            sx: 110,
+            sy: 645,
+            sw: 55,
+            sh: 325,
+            dx: 200,
+            dy: -150,
+            dw: 55,
+            dh: 325
         },
         bottom: {
-            sx: 502,
-            sy: 0,
-            sw: 53,
-            sh: 400,
-            dx: 0,
-            dy: 0,
-            dw: 53,
-            dh: 400
+            sx: 166,
+            sy: 645,
+            sw: 55,
+            sh: 325,
+            dx: 200,
+            dy: 280,
+            dw: 55,
+            dh: 325
         }
     },
-
-
+    gravity: 0.2
 }

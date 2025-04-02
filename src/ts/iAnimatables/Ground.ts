@@ -1,7 +1,6 @@
-import {settings} from "./settings";
-import {DrawFrame} from "./framework25/DrawFrame";
-import {iAnimatable} from "./framework25/types/iAnimatable";
-
+import {DrawFrame} from "../framework25/DrawFrame";
+import {iAnimatable} from "../framework25/types/iAnimatable";
+import {settings} from "../settings";
 export class Ground extends DrawFrame implements iAnimatable {
     private canvas: HTMLCanvasElement;
     private maxOffset: number;

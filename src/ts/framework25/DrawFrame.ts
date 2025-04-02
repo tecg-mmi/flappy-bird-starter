@@ -2,10 +2,10 @@ import {iFrame} from "./types/iFrame";
 
 export class DrawFrame {
     private ctx: CanvasRenderingContext2D;
-    private sprite: CanvasImageSource;
+    private sprite: HTMLImageElement;
     protected frame: iFrame;
 
-    constructor(ctx: CanvasRenderingContext2D, sprite: CanvasImageSource, frame: iFrame) {
+    constructor(ctx: CanvasRenderingContext2D, sprite: HTMLImageElement, frame: iFrame) {
         this.ctx = ctx;
         this.sprite = sprite;
         this.frame = frame;
