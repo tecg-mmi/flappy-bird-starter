@@ -29,9 +29,14 @@ class FlappyBird {
         this.addEventListeners();
         this.background = new Background(this.sprite, this.ctx);
         this.ground = new Ground(this.sprite, this.ctx, this.canvas);
-        this.birdie = new Birdie(this.sprite, this.ctx, this.canvas, this.gameStatus);
-        this.iAnimatables = [this.background, this.ground, this.birdie];
+        this.iAnimatables = [];
         this.animation = new Animation(this.ctx, this.canvas, this.iAnimatables);
+        this.birdie = new Birdie(this.sprite, this.ctx, this.canvas, this.gameStatus, this.animation);
+
+        this.iAnimatables.push(this.background);
+        this.iAnimatables.push(this.ground);
+        this.iAnimatables.push(this.birdie);
+
     }
 
     addEventListeners() {
@@ -40,8 +45,11 @@ class FlappyBird {
             this.animation.start();
         });
 
-        window.addEventListener("keydown", () => {
-            this.gameStatus.isStarted = true;
+        window.addEventListener("keydown", (evt) => {
+            if (evt.key === "ArrowUp" || evt.key === " ") {
+                this.gameStatus.isStarted = true;
+                this.birdie.goUp();
+            }
         });
     }
 

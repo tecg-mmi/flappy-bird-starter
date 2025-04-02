@@ -88,5 +88,4 @@ export const settings = {
             dh: 325
         }
     },
-    gravity: 0.2
 }

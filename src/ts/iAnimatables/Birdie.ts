@@ -2,6 +2,7 @@ import {FrameDrawer} from "../framework25/FrameDrawer";
 import {iAnimatable} from "../framework25/types/iAnimatable";
 import {settings} from "../settings";
 import {iGameStatus} from "../types/iGameStatus";
+import {Animation} from "../framework25/Animation";
 
 export class Birdie extends FrameDrawer implements iAnimatable {
     private canvas: HTMLCanvasElement;
@@ -9,11 +10,13 @@ export class Birdie extends FrameDrawer implements iAnimatable {
     private frameCounter: number = 0;
     private gameStatus: iGameStatus;
     private fallSpeed: number = 0;
+    private animation: Animation;
 
-    constructor(sprite: CanvasImageSource, ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, gameStatus: iGameStatus) {
+    constructor(sprite: CanvasImageSource, ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, gameStatus: iGameStatus, animation: Animation) {
         super(sprite, ctx, settings.birdie.frames[0]);
         this.gameStatus = gameStatus;
         this.canvas = canvas;
+        this.animation = animation;
     }
 
     update() {
@@ -27,6 +30,9 @@ export class Birdie extends FrameDrawer implements iAnimatable {
         }
         this.rotation = this.fallSpeed / settings.birdie.maxFallSpeed;
 
+        if (this.frame.dy > this.canvas.height - settings.ground.frame.sh) {
+            this.animation.stop();
+        }
     }
 
     private updateFrame() {
@@ -40,6 +46,11 @@ export class Birdie extends FrameDrawer implements iAnimatable {
         }
         this.frame.sx = settings.birdie.frames[this.currentFrame].sx;
         this.frame.sy = settings.birdie.frames[this.currentFrame].sy;
+
+    }
+
+    goUp() {
+        this.fallSpeed = -settings.birdie.maxFallSpeed;
     }
 
     animate() {
