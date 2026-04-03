@@ -14,7 +14,7 @@ class Main {
     private readonly ctx: CanvasRenderingContext2D;
     private readonly background: Background;
     private readonly ground: Ground;
-    private readonly bridie: Birdie;
+    private readonly birdie: Birdie;
     private readonly animates: IAnimatable[] = [];
     private readonly gameStatus: GameStatus;
     private readonly tubesPair: TubesPair;
@@ -33,9 +33,16 @@ class Main {
         this.gameStatus = new GameStatus();
 
 
+        this.birdie = new Birdie(
+            this.sprite,
+            this.ctx,
+            this.gameStatus
+        );
+
         this.tubesPair = new TubesPair(
             this.sprite,
             this.ctx,
+            this.birdie
         );
 
 
@@ -49,24 +56,18 @@ class Main {
             this.ctx,
         );
 
-        this.bridie = new Birdie(
-            this.sprite,
-            this.ctx,
-            this.gameStatus
-        );
-
 
         this.animates.push(this.background);
-        this.animates.push(this.bridie);
         this.animates.push(this.tubesPair);
         this.animates.push(this.ground);
+        this.animates.push(this.birdie);
 
         this.sprite.addEventListener('load', () => {
             this.loop.start();
         });
 
         this.canvas.addEventListener('click', () => {
-            this.bridie.goUp();
+            this.birdie.goUp();
         });
 
 
