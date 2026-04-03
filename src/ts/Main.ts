@@ -54,6 +54,10 @@ class Main {
             this.loop.start();
         });
 
+        this.canvas.addEventListener('click', () => {
+            this.bridie.goUp();
+        });
+
 
     }
 

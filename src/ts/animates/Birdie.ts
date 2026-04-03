@@ -12,6 +12,10 @@ export class Birdie extends Sprite implements IAnimatable {
     private rotation: number;
     private gameStatus: GameStatus;
 
+    private fallSpeed: number;
+    private maxFallSpeed: number;
+    private gravity: number;
+
 
     constructor(sprite: HTMLImageElement, ctx: CanvasRenderingContext2D, gameStatus: GameStatus) {
         super({
@@ -27,6 +31,11 @@ export class Birdie extends Sprite implements IAnimatable {
         this.frameCounter = 0;
         this.maxFrameCounter = settings.birdie.maxFrame;
         this.gameStatus = gameStatus;
+
+        this.fallSpeed = 0;
+        this.maxFallSpeed = settings.birdie.maxFallSpeed;
+        this.gravity = settings.birdie.gravity;
+
     }
 
     animate(): void {
@@ -41,9 +50,19 @@ export class Birdie extends Sprite implements IAnimatable {
 
             this.frame = settings.birdie.frames[this.currentFrame];
             this.frameCounter = 0;
-            this.y++;
+
+            if (this.fallSpeed < this.maxFallSpeed) {
+                this.fallSpeed += this.gravity;
+            }
+
+            this.rotation = this.fallSpeed / this.maxFallSpeed;
+
+            this.y += this.fallSpeed;
+
         }
-        if (this.y + settings.birdie.height/2 > this.ctx.canvas.height - settings.ground.frame.dh) {
+
+
+        if (this.y + settings.birdie.height / 2 > this.ctx.canvas.height - settings.ground.frame.dh) {
             this.gameStatus.gameOver = true;
         }
 
@@ -58,5 +77,9 @@ export class Birdie extends Sprite implements IAnimatable {
         this.ctx.rotate(this.rotation);
         super.draw();
         this.ctx.restore();
+    }
+
+    goUp() {
+        this.fallSpeed = -this.maxFallSpeed;
     }
 }
