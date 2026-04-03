@@ -1,7 +1,8 @@
-import {IFrame} from "./framework26/interfaces/IFrame";
 import {IBackground} from "./IBackground";
+import {IAnimatable} from "../framework26/interfaces/IAnimatable";
+import {IFrame} from "../framework26/interfaces/IFrame";
 
-export class Background implements IBackground {
+export class Background implements IBackground, IAnimatable {
 
     sprite: HTMLImageElement;
     ctx: CanvasRenderingContext2D;

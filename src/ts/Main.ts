@@ -1,8 +1,8 @@
 import {Loop} from "./framework26/core/Loop";
 import {settings} from "./settings";
-import {Background} from "./Background";
-import {Ground} from "./Ground";
-import {IAnimate} from "./framework26/interfaces/IAnimate";
+import {IAnimatable} from "./framework26/interfaces/IAnimatable";
+import {Background} from "./animates/Background";
+import {Ground} from "./animates/Ground";
 
 class Main {
     private readonly loop: Loop;
@@ -11,7 +11,7 @@ class Main {
     private readonly ctx: CanvasRenderingContext2D;
     private readonly background: Background;
     private readonly ground: Ground;
-    private readonly animates: IAnimate[] = [];
+    private readonly animates: IAnimatable[] = [];
 
     constructor() {
         this.canvas = document.getElementById(settings.canvasID) as HTMLCanvasElement;
