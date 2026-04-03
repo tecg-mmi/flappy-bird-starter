@@ -2,6 +2,7 @@ import {Loop} from "./framework26/core/Loop";
 import {settings} from "./settings";
 import {Background} from "./Background";
 import {Ground} from "./Ground";
+import {IAnimatable} from "./framework26/interfaces/IAnimatable";
 
 class Main {
     private readonly loop: Loop;
@@ -10,6 +11,7 @@ class Main {
     private readonly ctx: CanvasRenderingContext2D;
     private readonly background: Background;
     private readonly ground: Ground;
+    private readonly iAnimates: IAnimatable[] = [];
 
     constructor() {
         this.canvas = document.getElementById(settings.canvasID) as HTMLCanvasElement;
@@ -19,32 +21,36 @@ class Main {
             this.animate();
         });
 
-
         this.sprite = new Image();
         this.sprite.src = settings.spriteURL;
 
-        this.background = new Background({
-            ctx: this.ctx,
-            sprite: this.sprite,
-            frame: settings.background.frame
-        });
+        this.background = new Background(
+            this.sprite,
+            this.ctx
+        );
 
         this.ground = new Ground(
             this.sprite,
             this.ctx,
         );
 
+        this.iAnimates.push(this.background);
+        this.iAnimates.push(this.ground);
+
         this.sprite.addEventListener('load', () => {
             // ici, on a l'image en mémoire...
-            this.background.draw();
-            this.ground.draw();
+            this.loop.start();
         });
-
 
     }
 
     animate() {
-        // gérer l'animation...
+        console.log("test")
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.iAnimates.forEach((objToAnimate) => {
+            objToAnimate.animate();
+        });
     }
 }
 
