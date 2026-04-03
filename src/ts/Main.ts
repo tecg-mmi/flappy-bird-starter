@@ -5,6 +5,7 @@ import {Background} from "./animates/Background";
 import {Ground} from "./animates/Ground";
 import {Birdie} from "./animates/Birdie";
 import {GameStatus} from "./framework26/GameStatus";
+import {TubesPair} from "./animates/TubesPair";
 
 class Main {
     private readonly loop: Loop;
@@ -16,6 +17,7 @@ class Main {
     private readonly bridie: Birdie;
     private readonly animates: IAnimatable[] = [];
     private readonly gameStatus: GameStatus;
+    private readonly tubesPair: TubesPair;
 
     constructor() {
         this.canvas = document.getElementById(settings.canvasID) as HTMLCanvasElement;
@@ -28,7 +30,14 @@ class Main {
         this.sprite = new Image();
         this.sprite.src = settings.spriteURL;
 
+
         this.gameStatus = new GameStatus();
+
+        this.tubesPair = new TubesPair(
+            this.sprite,
+            this.ctx,
+        );
+
 
         this.background = new Background(
             this.sprite,
@@ -47,8 +56,9 @@ class Main {
         );
 
         this.animates.push(this.background);
+        this.animates.push(this.tubesPair);
         this.animates.push(this.ground);
-        this.animates.push(this.bridie)
+        this.animates.push(this.bridie);
 
         this.sprite.addEventListener('load', () => {
             this.loop.start();
