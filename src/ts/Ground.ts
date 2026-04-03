@@ -12,4 +12,13 @@ export class Ground extends Sprite {
         this.frame.dy = this.ctx.canvas.height - settings.ground.frame.sh;
     }
 
+    update() {
+        this.frame.dx--;
+    }
+
+    animate() {
+        this.update();
+        this.draw();
+    }
+
 }

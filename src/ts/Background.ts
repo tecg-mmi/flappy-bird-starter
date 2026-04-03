@@ -27,4 +27,7 @@ export class Background implements IBackground {
         )
     }
 
+    animate() {
+        this.draw();
+    }
 }
