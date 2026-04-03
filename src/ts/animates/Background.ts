@@ -1,7 +1,7 @@
 import {IBackground} from "./IBackground";
-import {IAnimatable} from "./framework26/interfaces/IAnimatable";
-import {Sprite} from "./framework26/Sprite";
-import {settings} from "./settings";
+import {Sprite} from "../framework26/Sprite";
+import {IAnimatable} from "../framework26/interfaces/IAnimatable";
+import {settings} from "../settings";
 
 export class Background extends Sprite implements IBackground, IAnimatable {
 
