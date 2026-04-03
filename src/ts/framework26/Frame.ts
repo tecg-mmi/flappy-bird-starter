@@ -13,7 +13,7 @@ export class Frame implements IFrame {
 
     constructor(frame: IFrame) {
         this.dx = frame.dx;
-        this.dx = frame.dy;
+        this.dy = frame.dy;
         this.dw = frame.dw;
         this.dh = frame.dh;
 

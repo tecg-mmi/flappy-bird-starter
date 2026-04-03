@@ -30,8 +30,8 @@ class Main {
         this.sprite = new Image();
         this.sprite.src = settings.spriteURL;
 
-
         this.gameStatus = new GameStatus();
+
 
         this.tubesPair = new TubesPair(
             this.sprite,
@@ -55,10 +55,11 @@ class Main {
             this.gameStatus
         );
 
+
         this.animates.push(this.background);
+        this.animates.push(this.bridie);
         this.animates.push(this.tubesPair);
         this.animates.push(this.ground);
-        this.animates.push(this.bridie);
 
         this.sprite.addEventListener('load', () => {
             this.loop.start();
