@@ -1,18 +1,22 @@
 import {IBackground} from "./IBackground";
 import {IAnimatable} from "../framework26/interfaces/IAnimatable";
 import {IFrame} from "../framework26/interfaces/IFrame";
+import {settings} from "../settings";
+import {Sprite} from "../framework26/Sprite";
 
-export class Background implements IBackground, IAnimatable {
+export class Background extends Sprite implements IBackground, IAnimatable {
 
     sprite: HTMLImageElement;
     ctx: CanvasRenderingContext2D;
     frame: IFrame;
 
 
-    constructor(background: IBackground) {
-        this.sprite = background.sprite;
-        this.frame = background.frame;
-        this.ctx = background.ctx;
+    constructor(sprite: HTMLImageElement, ctx: CanvasRenderingContext2D) {
+        super({
+            sprite: sprite,
+            ctx: ctx,
+            frame: settings.background.frame,
+        });
     }
 
     draw() {

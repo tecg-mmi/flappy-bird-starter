@@ -3,6 +3,8 @@ import {settings} from "./settings";
 import {IAnimatable} from "./framework26/interfaces/IAnimatable";
 import {Background} from "./animates/Background";
 import {Ground} from "./animates/Ground";
+import {Birdie} from "./animates/Birdie";
+import {GameStatus} from "./framework26/GameStatus";
 
 class Main {
     private readonly loop: Loop;
@@ -11,7 +13,9 @@ class Main {
     private readonly ctx: CanvasRenderingContext2D;
     private readonly background: Background;
     private readonly ground: Ground;
+    private readonly bridie: Birdie;
     private readonly animates: IAnimatable[] = [];
+    private readonly gameStatus: GameStatus;
 
     constructor() {
         this.canvas = document.getElementById(settings.canvasID) as HTMLCanvasElement;
@@ -24,19 +28,27 @@ class Main {
         this.sprite = new Image();
         this.sprite.src = settings.spriteURL;
 
-        this.background = new Background({
-            ctx: this.ctx,
-            sprite: this.sprite,
-            frame: settings.background.frame
-        });
+        this.gameStatus = new GameStatus();
+
+        this.background = new Background(
+            this.sprite,
+            this.ctx,
+        );
 
         this.ground = new Ground(
             this.sprite,
             this.ctx,
         );
 
+        this.bridie = new Birdie(
+            this.sprite,
+            this.ctx,
+            this.gameStatus
+        );
+
         this.animates.push(this.background);
         this.animates.push(this.ground);
+        this.animates.push(this.bridie)
 
         this.sprite.addEventListener('load', () => {
             this.loop.start();
@@ -46,6 +58,11 @@ class Main {
     }
 
     animate() {
+        if (this.gameStatus.gameOver) {
+            this.loop.stop();
+            return;
+        }
+
         this.animates.forEach((objToAnimate) => {
             objToAnimate.animate();
         });
