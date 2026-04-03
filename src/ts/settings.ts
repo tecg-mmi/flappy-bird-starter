@@ -3,36 +3,40 @@ export const settings = {
     spriteURL: "src/img/sprite.png",
     birdie: {
         gravity: 2,
+        x: 72,
+        y: 200,
+        width: 36,
+        height: 25,
         frames: [
             {
                 sx: 6,
                 sy: 982,
-                sw: 35,
-                sh: 35,
-                dx: 72,
-                dy: 200,
-                dw: 35,
-                dh: 35
+                sw: 36,
+                sh: 25,
+                dx: 0,
+                dy: 0,
+                dw: 36,
+                dh: 25
             },
             {
                 sx: 62,
                 sy: 982,
-                sw: 35,
-                sh: 35,
-                dx: 72,
-                dy: 200,
-                dw: 35,
-                dh: 35
+                sw: 36,
+                sh: 25,
+                dx: 0,
+                dy: 0,
+                dw: 36,
+                dh: 25
             },
             {
                 sx: 118,
                 sy: 982,
-                sw: 35,
-                sh: 35,
-                dx: 72,
-                dy: 200,
-                dw: 35,
-                dh: 35
+                sw: 36,
+                sh: 25,
+                dx: 0,
+                dy: 0,
+                dw: 36,
+                dh: 25
             }
         ],
         maxFallSpeed: 5, maxFrame: 10
