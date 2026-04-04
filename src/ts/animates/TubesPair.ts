@@ -2,6 +2,8 @@ import {IAnimatable} from "../framework26/interfaces/IAnimatable";
 import {Frame} from "../framework26/Frame";
 import {settings} from "../settings";
 import {Birdie} from "./Birdie";
+import {GameStatus} from "../framework26/GameStatus";
+import {ITubesPair} from "./ITubesPair";
 
 export class TubesPair implements IAnimatable {
     sprite: HTMLImageElement;
@@ -10,24 +12,27 @@ export class TubesPair implements IAnimatable {
     bottom: Frame;
     private x: number;
     private birdie: Birdie;
+    private gameStatus: GameStatus;
 
-    constructor(sprite: HTMLImageElement, ctx: CanvasRenderingContext2D, birdie:Birdie) {
-        this.sprite = sprite;
-        this.ctx = ctx;
+    constructor(tubePair: ITubesPair) {
+        this.sprite = tubePair.sprite;
+        this.ctx = tubePair.ctx;
         this.top = new Frame(settings.tubesPair.top);
         this.bottom = new Frame(settings.tubesPair.bottom);
         this.x = this.ctx.canvas.width + settings.tubesPair.top.sw;
-        this.birdie = birdie;
+        this.birdie = tubePair.birdie;
+        this.gameStatus = tubePair.gameStatus;
     }
 
     animate(): void {
-        this.x--;
+        if (this.gameStatus.hasStarted) {
+            this.x--;
 
-        if (this.x < -settings.tubesPair.top.sw) {
-            this.x = this.ctx.canvas.width + settings.tubesPair.top.sw
+            if (this.x < -settings.tubesPair.top.sw) {
+                this.x = this.ctx.canvas.width + settings.tubesPair.top.sw
+            }
+
         }
-
-
 
         this.draw();
     }

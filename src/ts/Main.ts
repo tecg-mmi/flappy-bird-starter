@@ -40,9 +40,13 @@ class Main {
         );
 
         this.tubesPair = new TubesPair(
-            this.sprite,
-            this.ctx,
-            this.birdie
+            {
+                birdie: this.birdie,
+                ctx: this.ctx,
+                gameStatus: this.gameStatus,
+                sprite: this.sprite
+
+            }
         );
 
 

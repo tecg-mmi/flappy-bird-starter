@@ -47,26 +47,34 @@ export class Birdie extends Sprite implements IAnimatable {
             if (this.currentFrame >= settings.birdie.frames.length) {
                 this.currentFrame = 0;
             }
-
             this.frame = settings.birdie.frames[this.currentFrame];
             this.frameCounter = 0;
 
-            if (this.fallSpeed < this.maxFallSpeed) {
-                this.fallSpeed += this.gravity;
+
+            if (this.gameStatus.hasStarted) {
+                if (this.fallSpeed < this.maxFallSpeed) {
+                    this.fallSpeed += this.gravity;
+                }
+
+                this.rotation = this.fallSpeed / this.maxFallSpeed;
+
+                this.y += this.fallSpeed;
             }
-
-            this.rotation = this.fallSpeed / this.maxFallSpeed;
-
-            this.y += this.fallSpeed;
 
         }
 
 
-        if (this.y + settings.birdie.height / 2 > this.ctx.canvas.height - settings.ground.frame.dh) {
-            this.gameStatus.gameOver = true;
+        if (this.gameStatus.hasStarted) {
+            if (this.checkCollisionWithGround()) {
+                this.gameStatus.gameOver = true;
+            }
         }
 
         this.draw();
+    }
+
+    private checkCollisionWithGround() {
+        return this.y + settings.birdie.height / 2 > this.ctx.canvas.height - settings.ground.frame.dh;
     }
 
     draw() {
