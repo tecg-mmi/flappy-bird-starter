@@ -69,10 +69,10 @@ export const settings = {
     },
     tubesPair: {
         minMaxY: {
-            min: 150,
+            min: 175,
             max: 300,
         },
-        gap: {min: 35, max: 85},
+        gap: {min: 35, max: 100},
         top: {
             sx: 110,
             sy: 645,
