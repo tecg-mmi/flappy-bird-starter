@@ -4,6 +4,7 @@ import {settings} from "../settings";
 import {Birdie} from "./Birdie";
 import {GameStatus} from "../framework26/GameStatus";
 import {ITubesPair} from "./ITubesPair";
+import {Random} from "../framework26/math/Random";
 
 export class TubesPair implements IAnimatable {
     sprite: HTMLImageElement;
@@ -11,6 +12,8 @@ export class TubesPair implements IAnimatable {
     top: Frame;
     bottom: Frame;
     private x: number;
+    private y: number;
+    private gap: number;
     private birdie: Birdie;
     private gameStatus: GameStatus;
 
@@ -19,15 +22,18 @@ export class TubesPair implements IAnimatable {
         this.ctx = tubePair.ctx;
         this.top = new Frame(settings.tubesPair.top);
         this.bottom = new Frame(settings.tubesPair.bottom);
-        this.x = this.ctx.canvas.width + settings.tubesPair.top.sw;
         this.birdie = tubePair.birdie;
         this.gameStatus = tubePair.gameStatus;
+        this.gap = Random.nextInteger(settings.tubesPair.gap);
+        this.x = this.ctx.canvas.width + settings.tubesPair.top.sw;
+        this.y = Random.nextInteger(settings.tubesPair.minMaxY);
+        this.top.dy = -(this.top.sh - (this.y - this.gap / 2));
+        this.bottom.dy = this.y + this.gap / 2;
     }
 
     animate(): void {
         if (this.gameStatus.hasStarted) {
             this.x--;
-
             if (this.x < -settings.tubesPair.top.sw) {
                 this.x = this.ctx.canvas.width + settings.tubesPair.top.sw
             }

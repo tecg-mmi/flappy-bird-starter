@@ -68,27 +68,30 @@ export const settings = {
         },
     },
     tubesPair: {
-        tubesMinGap: -100,
-        tubesMaxGap: 100,
+        minMaxY: {
+            min: 150,
+            max: 300,
+        },
+        gap: {min: 35, max: 85},
         top: {
             sx: 110,
             sy: 645,
             sw: 55,
-            sh: 325,
+            sh: 321,
             dx: 200,
             dy: -150,
             dw: 55,
-            dh: 325
+            dh: 321
         },
         bottom: {
             sx: 166,
             sy: 645,
             sw: 55,
-            sh: 325,
+            sh: 321,
             dx: 200,
             dy: 280,
             dw: 55,
-            dh: 325
+            dh: 321
         }
     },
 

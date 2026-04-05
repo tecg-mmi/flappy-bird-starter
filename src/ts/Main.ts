@@ -71,6 +71,9 @@ class Main {
         });
 
         this.canvas.addEventListener('click', () => {
+            if (!this.gameStatus.hasStarted) {
+                this.gameStatus.hasStarted = true;
+            }
             this.birdie.goUp();
         });
 

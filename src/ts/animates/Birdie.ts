@@ -2,13 +2,14 @@ import {Sprite} from "../framework26/Sprite";
 import {IAnimatable} from "../framework26/interfaces/IAnimatable";
 import {settings} from "../settings";
 import {GameStatus} from "../framework26/GameStatus";
+import {Random} from "../framework26/math/Random";
 
 export class Birdie extends Sprite implements IAnimatable {
     private currentFrame: number;
     private frameCounter: number;
     private maxFrameCounter: number;
-    private x: number;
-    private y: number;
+    public x: number;
+    public y: number;
     private rotation: number;
     private gameStatus: GameStatus;
 
