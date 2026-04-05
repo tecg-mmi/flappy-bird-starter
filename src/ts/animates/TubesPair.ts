@@ -24,6 +24,10 @@ export class TubesPair implements IAnimatable {
         this.bottom = new Frame(settings.tubesPair.bottom);
         this.birdie = tubePair.birdie;
         this.gameStatus = tubePair.gameStatus;
+        this.initRandomValues();
+    }
+
+    private initRandomValues() {
         this.gap = Random.nextInteger(settings.tubesPair.gap);
         this.x = this.ctx.canvas.width + settings.tubesPair.top.sw;
         this.y = Random.nextInteger(settings.tubesPair.minMaxY);
@@ -35,7 +39,7 @@ export class TubesPair implements IAnimatable {
         if (this.gameStatus.hasStarted) {
             this.x--;
             if (this.x < -settings.tubesPair.top.sw) {
-                this.x = this.ctx.canvas.width + settings.tubesPair.top.sw
+                this.initRandomValues()
             }
 
         }
