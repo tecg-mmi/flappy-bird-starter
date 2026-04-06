@@ -25,7 +25,7 @@ class Main {
 
         this.loop = new Loop(() => {
             this.animate();
-        });
+        }, 60);
 
         this.sprite = new Image();
         this.sprite.src = settings.spriteURL;
