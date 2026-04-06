@@ -2,14 +2,13 @@ import {Sprite} from "../framework26/Sprite";
 import {IAnimatable} from "../framework26/interfaces/IAnimatable";
 import {settings} from "../settings";
 import {GameStatus} from "../framework26/GameStatus";
-import {Random} from "../framework26/math/Random";
+import {IOrigin} from "../framework26/interfaces/IOrigin";
 
 export class Birdie extends Sprite implements IAnimatable {
     private currentFrame: number;
     private frameCounter: number;
     private maxFrameCounter: number;
-    public x: number;
-    public y: number;
+    public origin: IOrigin
     private rotation: number;
     private gameStatus: GameStatus;
 
@@ -25,8 +24,11 @@ export class Birdie extends Sprite implements IAnimatable {
             frame: settings.birdie.frames[0]
         });
 
-        this.x = settings.birdie.x;
-        this.y = settings.birdie.y;
+        this.origin = {
+            x: settings.birdie.x,
+            y: settings.birdie.y
+        }
+        
         this.rotation = 0;
         this.currentFrame = 0;
         this.frameCounter = 0;
@@ -59,7 +61,7 @@ export class Birdie extends Sprite implements IAnimatable {
 
                 this.rotation = this.fallSpeed / this.maxFallSpeed;
 
-                this.y += this.fallSpeed;
+                this.origin.y += this.fallSpeed;
             }
 
         }
@@ -75,14 +77,14 @@ export class Birdie extends Sprite implements IAnimatable {
     }
 
     private checkCollisionWithGround() {
-        return this.y + settings.birdie.height / 2 > this.ctx.canvas.height - settings.ground.frame.dh;
+        return this.origin.y + settings.birdie.height / 2 > this.ctx.canvas.height - settings.ground.frame.dh;
     }
 
     draw() {
         this.frame.dx = -settings.birdie.width / 2
         this.frame.dy = -settings.birdie.height / 2
         this.ctx.save();
-        this.ctx.translate(this.x, this.y);
+        this.ctx.translate(this.origin.x, this.origin.y);
         this.ctx.rotate(this.rotation);
         super.draw();
         this.ctx.restore();
