@@ -4,8 +4,9 @@ import {settings} from "../settings";
 import {Birdie} from "./Birdie";
 import {GameStatus} from "../framework26/GameStatus";
 import {ITubesPair} from "./ITubesPair";
-import {Random} from "../framework26/math/Random";
-import {Collision} from "../framework26/math/Collision";
+import {Random} from "../framework26/Math/Random";
+import {Collision} from "../framework26/Math/Collision";
+
 
 export class TubesPair implements IAnimatable {
     sprite: HTMLImageElement;
